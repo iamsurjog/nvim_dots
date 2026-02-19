@@ -20,10 +20,10 @@ return {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {'OXY2DEV/markview.nvim'},
         build = ":TSUpdate",
-        event = 'VeryLazy',
-        -- branch = 'main',
+        -- event = 'VeryLazy',
+        branch = 'main',
         config = function()
-            local config = require("nvim-treesitter.configs")
+            local config = require("nvim-treesitter")
             config.setup({
                 ensure_installed = { "markdown", "markdown_inline", "rust", "lua", "python"},
                 auto_install = true,
