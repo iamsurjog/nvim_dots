@@ -11,7 +11,9 @@ return{
                 ts = "bun %s",
                 go = "go run %s",
                 sh = "bash %s",
-                java = "java_run.sh %s"
+                java = "java_run.sh %s",
+                l = "flex %s && gcc lex.yy.c && ./a.out"
+                -- l = "echo \'gcc %s -o %s && ./%s\'",
             }
         })
     end,

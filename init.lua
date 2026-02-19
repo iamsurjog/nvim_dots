@@ -12,9 +12,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- vim.o.shell = "D:\apps-win\WezTerm\wezterm-gui.exe"
 
-
 require("vim-options")
 require("lazy").setup("plugins")
 local neopywal = require("neopywal")
 neopywal.setup()
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("rose-pine-main")
+vim.opt.conceallevel=1
+
+

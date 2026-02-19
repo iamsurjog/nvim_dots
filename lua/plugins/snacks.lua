@@ -1,8 +1,8 @@
-
 return {
     "folke/snacks.nvim",
     priority = 1000,
-    ---@type snacks.Config
+    -- version = "*",
+    -- branch = "main",
     opts = {
         indent = {
             enable = true,

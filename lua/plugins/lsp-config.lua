@@ -17,7 +17,9 @@ return {
             auto_install = true,
         },
         config = function()
-            local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
+			capabilities = vim.tbl_deep_extend("force", capabilities, blink_capabilities)
             require("mason-lspconfig").setup({
                 ensure_installed = {"eslint", "lua_ls", "pyright", "clangd",
                     "html", "cssls", "ts_ls", "tailwindcss", "markdown_oxide" },
