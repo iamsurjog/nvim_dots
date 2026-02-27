@@ -1,5 +1,6 @@
 return{
     "07CalC/cook.nvim",
+    cmd = "Cook",
     config = function()
         require("cook").setup({
             runners = {
@@ -16,6 +17,7 @@ return{
                 -- l = "echo \'gcc %s -o %s && ./%s\'",
             }
         })
+        vim.keymap.set('n', '<F8>', ':Cook<CR>')
     end,
-    cmd = "Cook",
 }
+

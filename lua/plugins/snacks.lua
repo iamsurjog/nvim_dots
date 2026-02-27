@@ -4,6 +4,20 @@ return {
     -- version = "*",
     -- branch = "main",
     opts = {
+        styles = {
+            picker = {
+                wo = {
+                    winblend = 50,  -- Tune for transparency with transparent.nvim
+                },
+                backdrop = false,  -- Improves blend
+            },
+            -- Optional: dashboard main win (startup only)
+            dashboard = {
+                wo = {
+                    winblend = 50,
+                },
+            },
+        },
         indent = {
             enable = true,
             indent = {
@@ -87,5 +101,4 @@ return {
         }
     }
 }
-
 
