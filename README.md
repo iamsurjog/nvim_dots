@@ -1,2 +1,3 @@
 # NVIM Dotfiles
-My neovim dotfiles
+Plugins:
+
