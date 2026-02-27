@@ -1,5 +1,4 @@
 vim.cmd.colorscheme("rose-pine-main")
-vim.cmd.TransparentEnable()
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = "Open parent directory" })
 
