@@ -27,8 +27,7 @@ return{
             local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
             capabilities = vim.tbl_deep_extend("force", capabilities, blink_capabilities)
             require("mason-lspconfig").setup({
-                ensure_installed = {"eslint", "lua_ls", "pyright", "clangd",
-                "html", "cssls", "ts_ls", "tailwindcss", "markdown_oxide" },
+                ensure_installed = {"eslint", "lua_ls", "pyright", "clangd", "html", "cssls", "ts_ls", "tailwindcss", "markdown_oxide" },
                 handlers = {
                     function(server_name)
                         require("lspconfig")[server_name].setup({
@@ -38,6 +37,12 @@ return{
                 },
 
             })
+            vim.lsp.config.qmlls = {
+                cmd = {"qmlls6"},
+                filetypes = {"qml", "qmljs"},
+                root_markers = {".git"},
+                capabilities = capabilities,
+            }
         end,
     },
     {
