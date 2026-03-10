@@ -11,11 +11,12 @@ return {
                     html = { "prettierd" },
                     css = { "prettierd" },
                     javascript = { "prettierd" },
+                    astro = { "prettierd" },
                     bash = { "shfmt" },
                     sh = { "shfmt" },
                     zsh = { "shfmt" },
                     go = { "gofmt" },
-                    qml = { "qmlformat" }
+                    -- qml = { "qmlformat" }
                 },
                 formatters = {
                     qmlformat = {
