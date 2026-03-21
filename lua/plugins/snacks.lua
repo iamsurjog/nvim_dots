@@ -78,12 +78,6 @@ return {
                             end,
                             height = 7,
                         },
-                        {
-                            icon = " ",
-                            title = "Git Status",
-                            cmd = "git --no-pager diff --stat -B -M -C",
-                            height = 10,
-                        },
                     }
                     return vim.tbl_map(function(cmd)
                         return vim.tbl_extend("force", {
@@ -91,7 +85,28 @@ return {
                             section = "terminal",
                             enabled = in_git,
                             padding = 1,
-                            ttl = 5 * 60,
+                            ttl = 5,
+                            indent = 3,
+                        }, cmd)
+                    end, cmds)
+                end,
+                function ()
+                    local cmds = {
+                        {
+                            icon = " ",
+                            title = "TODOs",
+                            cmd = "rg -n --no-heading -S '(TODO|FIXME|HACK|BUG|FIXIT|ISSUE|WARN|PERF|NOTE|TEST):'",
+                            key = "T",
+                            height = 7,
+                            action = ":lua require(\"snacks\").dashboard.pick('todo_comments')"
+                        },
+                    }
+                    return vim.tbl_map(function(cmd)
+                        return vim.tbl_extend("force", {
+                            pane = 2,
+                            section = "terminal",
+                            padding = 1,
+                            ttl = 5,
                             indent = 3,
                         }, cmd)
                     end, cmds)
