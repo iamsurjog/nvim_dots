@@ -43,12 +43,12 @@ return {
                 },
 
             })
-            vim.lsp.config.qmlls = {
-                cmd = { "qmlls6" },
-                filetypes = { "qml", "qmljs" },
-                root_markers = { ".git" },
-                capabilities = capabilities,
-            }
+            -- vim.lsp.config.qmlls = {
+            --     cmd = { "qmlls6" },
+            --     filetypes = { "qml", "qmljs" },
+            --     root_markers = { ".git" },
+            --     capabilities = capabilities,
+            -- }
         end,
     },
     {
@@ -59,6 +59,13 @@ return {
                 capabilities = blink_capabilities,
             })
             vim.lsp.enable("clangd")
+            vim.lsp.config("qml-language-server", {
+                cmd = { "qml-language-server" },
+                filetypes = { "qml" },
+                root_markers = { { "qmldir", "shell.qml" }, ".git" },
+            })
+
+            vim.lsp.enable("qml-language-server")
             -- vim.diagnostic.config({virtual_text = true})
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})

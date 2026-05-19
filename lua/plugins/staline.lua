@@ -1,18 +1,21 @@
-return{
+return {
     'tamton-aquib/staline.nvim',
     config = function()
         require("staline").setup {
             sections = {
                 left = {
-                    'line_column',                        -- Filesize
+                    'line_column', -- Filesize
                     'lsp',
                 },
-                mid = { 'mode',                      -- "lsp_name" is still a little buggy
-                'file_name'
+                mid = { 'mode', -- "lsp_name" is still a little buggy
+                    'file_name'
                 },
                 right = {
+                    -- function()
+                    --     return require("screenkey").get_keys()
+                    -- end,
                     'lsp_name',
-                    'branch'
+                    'branch',
                 }
             },
             defaults = {
@@ -22,11 +25,10 @@ return{
             -- TODO: Add colors
             mode_colors = {
                 n = "#c4a7e7",
-                i = "#ea9a97",       -- etc mode
+                i = "#ea9a97", -- etc mode
                 v = "#f6c177",
                 c = "#eb6f92"
             }
         }
     end
 }
-
