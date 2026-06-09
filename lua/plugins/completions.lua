@@ -27,28 +27,40 @@ return {
             local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
             capabilities = vim.tbl_deep_extend("force", capabilities, blink_capabilities)
             require("mason-lspconfig").setup({
-                ensure_installed = { "eslint", "lua_ls", "pyright", "clangd", "html", "cssls", "ts_ls", "tailwindcss", "markdown_oxide" },
+                ensure_installed = { "eslint", "lua_ls", "basedpyright", "clangd", "html", "cssls", "ts_ls", "tailwindcss", "markdown_oxide" },
                 automatic_enable = {
                     enabled = true,
-                    exclude = {
-                        "clangd",
-                    },
+                    exclude = { "clangd" },
                 },
                 handlers = {
                     function(server_name)
-                        require("lspconfig")[server_name].setup({
-                            capabilities = lsp_capabilities,
-                        }) --automatically setup the lsp servers!!!
+                        local config = {
+                            capabilities = capabilities,
+                        }
+
+                        -- FORCE BASEDPYRIGHT TO INTERCEPT YOUR VIRTUAL ENVIRONMENT
+                        if server_name == "basedpyright" or server_name == "pyright" then
+                            config.settings = {
+                                python = {
+                                    -- This is the exact key the language server reads to map your modules
+                                    pythonPath = vim.env.VIRTUAL_ENV and (vim.env.VIRTUAL_ENV .. "/bin/python") or
+                                        "python",
+                                },
+                                basedpyright = {
+                                    analysis = {
+                                        diagnosticMode = "workspace",
+                                        useLibraryCodeForTypes = true,
+                                    }
+                                }
+                            }
+                        end
+
+                        require("lspconfig")[server_name].setup(config)
                     end,
                 },
-
             })
-            -- vim.lsp.config.qmlls = {
-            --     cmd = { "qmlls6" },
-            --     filetypes = { "qml", "qmljs" },
-            --     root_markers = { ".git" },
-            --     capabilities = capabilities,
-            -- }
+
+            -- Cleaned up: Removed the broken vim.lsp.config.pylint block completely
         end,
     },
     {
